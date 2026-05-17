@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% block title %}About Us — IRONFORGE GYM{% endblock %}
+
+{% block content %}
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-content">
+    <span class="section-tag">OUR STORY</span>
+    <h1 class="page-hero-title">ABOUT US</h1>
+    <p>Built by athletes. Run for everyone.</p>
+  </div>
+</section>
+
+<!-- MISSION -->
+<section class="section mission-section">
+  <div class="container mission-grid">
+    <div class="mission-text">
+      <span class="section-tag">OUR MISSION</span>
+      <h2 class="section-title">MORE THAN A GYM</h2>
+      <div class="title-bar"></div>
+      <p>
+        IronForge was founded in {{ gym.founded }} with a single belief: every person deserves access
+        to a world-class training environment and the coaching to match. We're not a franchise,
+        not a chain — we're a community forged in sweat, discipline, and mutual respect.
+      </p>
+      <p>
+        Our coaches don't just count reps. They build programs, track progress, and celebrate
+        every milestone with you. Whether you're stepping into a gym for the first time or
+        prepping for competition, IronForge has the tools and the team to get you there.
+      </p>
+      <div class="mission-values">
+        <div class="value-chip">🔥 Intensity</div>
+        <div class="value-chip">🤝 Community</div>
+        <div class="value-chip">📈 Progress</div>
+        <div class="value-chip">💯 Accountability</div>
+      </div>
+    </div>
+    <div class="mission-visual">
+      <div class="visual-block big">
+        <span>30K</span>
+        <p>Square Feet of Training Space</p>
+      </div>
+      <div class="visual-block">
+        <span>{{ gym.members }}+</span>
+        <p>Active Members</p>
+      </div>
+      <div class="visual-block accent">
+        <span>#1</span>
+        <p>Rated Gym Downtown</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="section team-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">THE PEOPLE</span>
+      <h2 class="section-title">MEET THE TEAM</h2>
+      <div class="title-bar"></div>
+    </div>
+    <div class="team-grid">
+      {% for member in gym.team %}
+      <div class="team-card">
+        <div class="team-avatar">{{ member.emoji }}</div>
+        <h3 class="team-name">{{ member.name }}</h3>
+        <p class="team-role">{{ member.role }}</p>
+        <p class="team-cert">{{ member.cert }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- FACILITIES -->
+<section class="section facilities-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">THE SPACE</span>
+      <h2 class="section-title">OUR FACILITIES</h2>
+      <div class="title-bar"></div>
+    </div>
+    <div class="facilities-grid">
+      {% for f in gym.facilities %}
+      <div class="facility-item">
+        <div class="facility-num">0{{ loop.index }}</div>
+        <div class="facility-info">
+          <h3>{{ f.name }}</h3>
+          <p>{{ f.detail }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}

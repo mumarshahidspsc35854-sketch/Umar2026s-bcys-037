@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %}IRONFORGE GYM — {{ gym.tagline }}{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+  </div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Est. {{ gym.founded }} &nbsp;·&nbsp; Downtown's Premier Gym</p>
+    <h1 class="hero-heading">
+      <span class="line1">FORGE</span>
+      <span class="line2">YOUR</span>
+      <span class="line3">LIMITS</span>
+    </h1>
+    <p class="hero-sub">
+      Where iron meets ambition. {{ gym.members }}+ members. {{ gym.trainers }} elite coaches.
+      One mission — transform you.
+    </p>
+    <div class="hero-ctas">
+      <a href="/membership" class="btn-primary">VIEW PLANS</a>
+      <a href="/about" class="btn-ghost">OUR STORY →</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <span class="stat-num">{{ gym.members }}+</span>
+      <span class="stat-label">Members</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat">
+      <span class="stat-num">{{ gym.trainers }}</span>
+      <span class="stat-label">Coaches</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat">
+      <span class="stat-num">24/7</span>
+      <span class="stat-label">Access</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat">
+      <span class="stat-num">30K</span>
+      <span class="stat-label">Sq. Ft.</span>
+    </div>
+  </div>
+</section>
+
+<!-- HIGHLIGHTS -->
+<section class="section highlights-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">WHAT WE OFFER</span>
+      <h2 class="section-title">GYM HIGHLIGHTS</h2>
+      <div class="title-bar"></div>
+    </div>
+    <div class="highlights-grid">
+      {% for h in gym.highlights %}
+      <div class="highlight-card" style="--delay: {{ loop.index0 * 0.1 }}s">
+        <span class="h-icon">{{ h.icon }}</span>
+        <h3 class="h-title">{{ h.title }}</h3>
+        <p class="h-desc">{{ h.desc }}</p>
+        <div class="h-line"></div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <div class="cta-inner">
+    <h2>READY TO START YOUR JOURNEY?</h2>
+    <p>First week is on us. No contracts. No excuses.</p>
+    <a href="/membership" class="btn-primary">CLAIM FREE WEEK</a>
+  </div>
+</section>
+
+{% endblock %}

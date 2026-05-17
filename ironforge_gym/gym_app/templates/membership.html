@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+{% block title %}Membership Plans — IRONFORGE GYM{% endblock %}
+
+{% block content %}
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-content">
+    <span class="section-tag">PRICING</span>
+    <h1 class="page-hero-title">MEMBERSHIP</h1>
+    <p>Pick your plan. Start your transformation.</p>
+  </div>
+</section>
+
+<!-- PLANS -->
+<section class="section plans-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">NO LOCK-IN CONTRACTS</span>
+      <h2 class="section-title">CHOOSE YOUR PLAN</h2>
+      <div class="title-bar"></div>
+      <p class="section-sub">All plans include full gym floor access. Upgrade or cancel anytime.</p>
+    </div>
+    <div class="plans-grid">
+      {% for plan in gym.plans %}
+      <div class="plan-card {% if plan.highlight %}plan-featured{% endif %}">
+        {% if plan.highlight %}
+        <div class="plan-badge">MOST POPULAR</div>
+        {% endif %}
+        <div class="plan-header" style="--plan-color: {{ plan.color }}">
+          <h3 class="plan-name">{{ plan.name }}</h3>
+          <div class="plan-price">
+            <span class="price-dollar">$</span>
+            <span class="price-amount">{{ plan.price }}</span>
+            <span class="price-period">{{ plan.period }}</span>
+          </div>
+        </div>
+        <ul class="plan-features">
+          {% for feature in plan.features %}
+          <li><span class="check">✓</span> {{ feature }}</li>
+          {% endfor %}
+        </ul>
+        <a href="#signup" class="plan-btn {% if plan.highlight %}plan-btn-featured{% endif %}">
+          GET STARTED
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section services-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">EXTRAS</span>
+      <h2 class="section-title">ADD-ON SERVICES</h2>
+      <div class="title-bar"></div>
+    </div>
+    <div class="services-grid">
+      <div class="service-item">
+        <span class="service-icon">👤</span>
+        <h3>Personal Training</h3>
+        <p>One-on-one sessions with a certified coach tailored to your goals.</p>
+        <span class="service-price">From $45/session</span>
+      </div>
+      <div class="service-item">
+        <span class="service-icon">🥗</span>
+        <h3>Nutrition Planning</h3>
+        <p>Custom meal plans and macro coaching from our registered dietitian.</p>
+        <span class="service-price">From $80/month</span>
+      </div>
+      <div class="service-item">
+        <span class="service-icon">📊</span>
+        <h3>Body Composition Scan</h3>
+        <p>InBody scan with detailed breakdown of muscle, fat, and hydration levels.</p>
+        <span class="service-price">$25/scan</span>
+      </div>
+      <div class="service-item">
+        <span class="service-icon">🧊</span>
+        <h3>Recovery Suite Drop-In</h3>
+        <p>Sauna, cold plunge, and compression boots — open to all members.</p>
+        <span class="service-price">$15/visit</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNUP FORM -->
+<section class="section signup-section" id="signup">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">GET STARTED</span>
+      <h2 class="section-title">JOIN IRONFORGE</h2>
+      <div class="title-bar"></div>
+    </div>
+    <div class="signup-wrapper">
+      <form class="signup-form" onsubmit="handleSignup(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" placeholder="Marcus" required />
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" placeholder="Cole" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="you@example.com" required />
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" placeholder="(555) 000-0000" />
+        </div>
+        <div class="form-group">
+          <label>Select Plan</label>
+          <select>
+            {% for plan in gym.plans %}
+            <option value="{{ plan.name.lower() }}">{{ plan.name }} — ${{ plan.price }}/mo</option>
+            {% endfor %}
+          </select>
+        </div>
+        <button type="submit" class="btn-primary form-submit">CLAIM MY SPOT →</button>
+      </form>
+      <div class="signup-perks">
+        <h3>Why join IronForge?</h3>
+        <ul>
+          <li>✓ First week free — no payment upfront</li>
+          <li>✓ No long-term contracts</li>
+          <li>✓ Cancel anytime online</li>
+          <li>✓ Free orientation session included</li>
+          <li>✓ Family discount available</li>
+          <li>✓ Student & senior pricing</li>
+        </ul>
+        <div class="signup-badge">⭐ 4.9 / 5 from 800+ reviews</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+function handleSignup(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.form-submit');
+  btn.textContent = '✓ YOU\'RE IN! WE\'LL BE IN TOUCH.';
+  btn.style.background = '#22c55e';
+  btn.disabled = true;
+}
+</script>
+
+{% endblock %}

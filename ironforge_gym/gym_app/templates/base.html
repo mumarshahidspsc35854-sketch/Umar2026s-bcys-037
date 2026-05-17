@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{% block title %}IRONFORGE GYM{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="site-header">
+    <div class="nav-inner">
+      <a href="/" class="logo">
+        <span class="logo-icon">⚙</span>
+        <span class="logo-text">IRON<span class="logo-accent">FORGE</span></span>
+      </a>
+      <nav class="main-nav">
+        <a href="/" class="nav-link {% if request.endpoint == 'home' %}active{% endif %}">Home</a>
+        <a href="/about" class="nav-link {% if request.endpoint == 'about' %}active{% endif %}">About Us</a>
+        <a href="/membership" class="nav-link {% if request.endpoint == 'membership' %}active{% endif %}">Membership</a>
+      </nav>
+      <a href="/membership" class="btn-join">JOIN NOW</a>
+    </div>
+  </header>
+
+  <!-- PAGE CONTENT -->
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="logo-text">IRON<span class="logo-accent">FORGE</span></span>
+        <p>{{ gym.tagline }}</p>
+      </div>
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/membership">Membership</a>
+      </div>
+      <div class="footer-info">
+        <p>📍 42 Steel Ave, Downtown</p>
+        <p>📞 (555) 867-5309</p>
+        <p>✉ info@ironforge.gym</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© {{ gym.founded }}–2026 IronForge Gym. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
